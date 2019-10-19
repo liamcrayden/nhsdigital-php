@@ -2,9 +2,10 @@
     "name": "liamcrayden/nhsdigital-php",
     "description": "A PHP library for interacting with a variety of NHS APIs",
     "keywords": ["nhs", "api"],
+    "minimum-stability": "alpha"
     "homepage": "https://github.com/liamcrayden/nhsdigital-php",
     "require": {
-        "guzzlehttp/guzzle": "6.3.3"
+        "guzzlehttp/guzzle": ">=6.0.0"
     },
     "license": "MIT",
     "authors": [

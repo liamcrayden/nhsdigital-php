@@ -1,0 +1,19 @@
+{
+    "name": "liamcrayden/nhsdigital-php",
+    "description": "A PHP library for interacting with a variety of NHS APIs",
+    "keywords": ["nhs", "api"],
+    "homepage": "https://github.com/liamcrayden/nhsdigital-php",
+    "require": {
+        "guzzlehttp/guzzle": "6.3.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Liam Crayden",
+            "email": "liam.crayden@crayden-group.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"liamcrayden\\NHSDigital\\": "src/"}
+    }
+}

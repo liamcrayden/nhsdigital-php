@@ -394,6 +394,7 @@ class DraftComment extends Model
                 $i++;
             }
         }
+        $submit['PublishersCommentRef'] = (string) $submit['PublishersCommentRef'];
         return json_encode( $submit );
     }
 

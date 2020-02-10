@@ -11,7 +11,7 @@ use liamcrayden\NHSDigital\Exceptions\ResourceNotFoundException;
 try {
 
     $nhs = new NHSModerationAPI();
-    $nhs->setSubscriptionKey('905559fdc26748d0afc8c3a1880ef525');
+    $nhs->setSubscriptionKey('PUT-YOUR-SUBSCRIPTION-KEY-HERE');
     $commentStatus = $nhs->getCommentStatus('6a1ac562-5fd6-e911-a812-000d3a7ed518');
     echo $commentStatus;
 

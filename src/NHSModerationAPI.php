@@ -81,7 +81,6 @@ class NHSModerationAPI extends NHSDigital
      */
     private function populateCommentStatus( $response )
     {
-        //print_r($response); exit;
         $commentStatus = new CommentStatus;
         $commentStatus->fromStringArray($response);
         return $commentStatus;

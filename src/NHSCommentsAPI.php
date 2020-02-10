@@ -274,7 +274,6 @@ class NHSCommentsAPI extends NHSDigital
      */
     private function populateComment( $response )
     {
-        //print_r($response); exit;
         $comment = new Comment;
         $comment->fromStringArray($response['comment']);
 

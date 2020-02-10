@@ -25,19 +25,14 @@ try {
     $comment->setCommentOriginalURL('https://example.com/my/comment/123456');
     $comment->setIPAddress('1.2.3.4');
     $comment->setODSCode('V12345');
-    $comment->setRatings(
-      [
-          ['Question' => '10004', 'Rating' => 5],
-      ]
-    );
+    $comment->addRating( ['Question' => '10004', 'Rating' => 5] );
 
     $visit = new CommentVisit;
     $visit->setMonth('2');
     $visit->setYear('2019');
 
     $comment->setVisit($visit);
-
-    $nhs->submitComment($comment);
+    print_r ( $nhs->submitComment($comment) );
 
 } catch (InvalidSubscriptionKeyException $e) {
 

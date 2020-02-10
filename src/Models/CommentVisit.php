@@ -43,8 +43,8 @@ class CommentVisit extends Model
     public static function getProperties()
     {
         return [
-            'month' => [true, self::PROPERTY_TYPE_INT, null, false, false],
-            'year' => [true, self::PROPERTY_TYPE_INT, null, false, false],
+            'Month' => [true, self::PROPERTY_TYPE_INT, null, false, false],
+            'Year' => [true, self::PROPERTY_TYPE_INT, null, false, false],
         ];
     }
 
@@ -53,7 +53,7 @@ class CommentVisit extends Model
      */
     public function getMonth()
     {
-        return $this->_data['month'];
+        return $this->_data['Month'];
     }
 
     /**
@@ -61,7 +61,7 @@ class CommentVisit extends Model
      */
     public function getYear()
     {
-        return $this->_data['year'];
+        return $this->_data['Year'];
     }
 
     /**
@@ -71,8 +71,8 @@ class CommentVisit extends Model
      */
     public function setMonth($value)
     {
-        $this->propertyUpdated('month', (int) $value);
-        $this->_data['month'] = (int) $value;
+        $this->propertyUpdated('Month', (int) $value);
+        $this->_data['Month'] = (int) $value;
         return $this;
     }
 
@@ -83,8 +83,8 @@ class CommentVisit extends Model
      */
     public function setYear($value)
     {
-        $this->propertyUpdated('year', (int) $value);
-        $this->_data['year'] = (int) $value;
+        $this->propertyUpdated('Year', (int) $value);
+        $this->_data['Year'] = (int) $value;
         return $this;
     }
 
@@ -108,6 +108,11 @@ class CommentVisit extends Model
     public function save()
     {
         throw new NotImplementedException();
+    }
+
+    public function __toString()
+    {
+        return json_encode( $this, JSON_NUMERIC_CHECK );
     }
 
 

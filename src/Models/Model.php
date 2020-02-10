@@ -40,6 +40,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
     const PROPERTY_TYPE_DATE = 'date';
     const PROPERTY_TYPE_TIMESTAMP = 'timestamp';
     const PROPERTY_TYPE_OBJECT = 'object';
+    const PROPERTY_TYPE_ARRAY = 'array';
 
     /**
      * Container to the actual properties of the object.
@@ -237,6 +238,8 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
                 }
 
                 return '';
+            case self::PROPERTY_TYPE_ARRAY:
+                return $value;
             default:
                 if (is_scalar($value)) {
                     return (string) $value;

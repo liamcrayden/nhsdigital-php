@@ -8,7 +8,7 @@
 ██║ ╚████║██║  ██║███████║    ██████╔╝██║╚██████╔╝██║   ██║   ██║  ██║███████╗
 ╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚═════╝ ╚═╝ ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝
 
-Comment Model
+DraftßComment Model
 
 */
 
@@ -105,17 +105,16 @@ class DraftComment extends Model
         return [
             'Author' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'ScreenName' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Title' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Title' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'CommentText' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'CommentOriginalURL' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Visit' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Visit' => [true, self::PROPERTY_TYPE_OBJECT, '\\liamcrayden\\NHSDigital\Models\\CommentVisit', true, false],
             'PublishersCommentRef' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'PublisherID' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
-            'CommentOriginalURL' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'Department' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'IPAddress' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'ODSCode' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Ratings' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
+            'IPAddress' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
+            'ODSCode' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
+            'Ratings' => [true, self::PROPERTY_TYPE_ARRAY, null, true, false],
         ];
     }
 
@@ -353,6 +352,18 @@ class DraftComment extends Model
      *
      * @return Comment
      */
+    public function addRating(array $value)
+    {
+        $this->propertyUpdated('Ratings', $value);
+        $this->_data['Ratings'][] = $value;
+        return $this;
+    }
+
+    /**
+     * @param array $value
+     *
+     * @return Comment
+     */
     public function setRatings(array $value)
     {
         $this->propertyUpdated('Ratings', $value);
@@ -367,6 +378,23 @@ class DraftComment extends Model
     {
         throw new NotImplementedException();
         return false;
+    }
+
+    public function __submittable()
+    {
+        $submit = json_decode( json_encode( $this, JSON_NUMERIC_CHECK ), TRUE );
+        if ( isset( $submit['Ratings'] ) )
+        {
+            $i = 0;
+            while( $i < count($submit['Ratings'] ) )
+            {
+                if ( isset( $submit['Ratings'][$i]['Question'] ) )
+                    $submit['Ratings'][$i]['Question'] = (string) $submit['Ratings'][$i]['Question'];
+
+                $i++;
+            }
+        }
+        return json_encode( $submit );
     }
 
 

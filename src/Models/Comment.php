@@ -301,7 +301,7 @@ class Comment extends Model
      */
     public function getRatings()
     {
-        return $this->_data['commentId'];
+        return $this->_data['ratings'];
     }
 
     /**

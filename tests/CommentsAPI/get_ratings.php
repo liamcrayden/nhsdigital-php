@@ -27,4 +27,8 @@ try {
 
     die( 'Connection Failure: ' . $e->getMessage() . PHP_EOL );
 
+} catch ( \Exception $e ) {
+
+    die( 'Exception: ' . $e->getMessage() . PHP_EOL );
+
 }

@@ -8,7 +8,7 @@
 ██║ ╚████║██║  ██║███████║    ██████╔╝██║╚██████╔╝██║   ██║   ██║  ██║███████╗
 ╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝    ╚═════╝ ╚═╝ ╚═════╝ ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝
 
-DraftComment Model
+DraftResponse Model
 
 */
 
@@ -16,7 +16,7 @@ namespace liamcrayden\NHSDigital\Models;
 
 use liamcrayden\NHSDigital\Exceptions\NotImplementedException;
 
-class DraftComment extends Model
+class DraftResponse extends Model
 {
     /**
      * The email address of the author
@@ -79,15 +79,15 @@ class DraftComment extends Model
      */
 
     /**
-     * An array of ratings, each comprising of a question ID and rating value
+     * Responding To Publisher ID
      *
-     * @property array Ratings
+     * @property string RespondingToPublisherID
      */
 
     /**
-     * A object comprising two properties - month and year - representing the month and year of the visit this comment relates to
+     * Responding To Publishers Comment Ref
      *
-     * @property CommentVisit Visit
+     * @property string RespondingToPublishersCommentRef
      */
 
     /**
@@ -108,13 +108,13 @@ class DraftComment extends Model
             'Title' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'CommentText' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'CommentOriginalURL' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Visit' => [true, self::PROPERTY_TYPE_OBJECT, '\\liamcrayden\\NHSDigital\Models\\CommentVisit', true, false],
             'PublishersCommentRef' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'PublisherID' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'Department' => [false, self::PROPERTY_TYPE_STRING, null, false, false],
             'IPAddress' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
             'ODSCode' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
-            'Ratings' => [true, self::PROPERTY_TYPE_ARRAY, null, true, false],
+            'RespondingToPublisherID' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
+            'RespondingToPublishersCommentRef' => [true, self::PROPERTY_TYPE_STRING, null, false, false],
         ];
     }
 
@@ -169,6 +169,22 @@ class DraftComment extends Model
     /**
      * @return string
      */
+    public function getRespondingToPublishersCommentRef()
+    {
+        return $this->_data['RespondingToPublishersCommentRef'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getRespondingToPublisherID()
+    {
+        return $this->_data['RespondingToPublisherID'];
+    }
+
+    /**
+     * @return string
+     */
     public function getCommentOriginalURL()
     {
         return $this->_data['CommentOriginalURL'];
@@ -199,25 +215,9 @@ class DraftComment extends Model
     }
 
     /**
-     * @return string
-     */
-    public function getRatings()
-    {
-        return $this->_data['Ratings'];
-    }
-
-    /**
-     * @return CommentVisit
-     */
-    public function getVisit()
-    {
-        return $this->_data['Visit'];
-    }
-
-    /**
      * @param string $value
      *
-     * @return DraftComment
+     * @return DraftResponse
      */
     public function setAuthor(string $value)
     {
@@ -229,7 +229,7 @@ class DraftComment extends Model
     /**
      * @param string $value
      *
-     * @return DraftComment
+     * @return DraftResponse
      */
     public function setScreenName(string $value)
     {
@@ -241,7 +241,7 @@ class DraftComment extends Model
     /**
      * @param string $value
      *
-     * @return DraftComment
+     * @return DraftResponse
      */
     public function setTitle(string $value)
     {
@@ -254,7 +254,7 @@ class DraftComment extends Model
     /**
      * @param string $value
      *
-     * @return DraftComment
+     * @return DraftResponse
      */
     public function setCommentText(string $value)
     {
@@ -264,21 +264,9 @@ class DraftComment extends Model
     }
 
     /**
-     * @param CommentVisit $value
-     *
-     * @return DraftComment
-     */
-    public function setVisit(CommentVisit $value)
-    {
-        $this->propertyUpdated('Visit', $value);
-        $this->_data['Visit'] = $value;
-        return $this;
-    }
-
-    /**
      * @param string $value
      *
-     * @return DraftComment
+     * @return DraftResponse
      */
     public function setPublishersCommentRef(string $value)
     {
@@ -290,7 +278,7 @@ class DraftComment extends Model
     /**
      * @param string $value
      *
-     * @return DraftComment
+     * @return DraftResponse
      */
     public function setPublisherID(string $value)
     {
@@ -300,9 +288,33 @@ class DraftComment extends Model
     }
 
     /**
+     * @return string
+     *
+     * @return DraftResponse
+     */
+    public function setRespondingToPublishersCommentRef(string $value)
+    {
+        $this->propertyUpdated('RespondingToPublishersCommentRef', $value);
+        $this->_data['RespondingToPublishersCommentRef'] = $value;
+        return $this;
+    }
+
+    /**
+     * @return string
+     *
+     * @return DraftResponse
+     */
+    public function setRespondingToPublisherID(string $value)
+    {
+        $this->propertyUpdated('RespondingToPublisherID', $value);
+        $this->_data['RespondingToPublisherID'] = $value;
+        return $this;
+    }
+
+    /**
      * @param string $value
      *
-     * @return DraftComment
+     * @return DraftResponse
      */
     public function setCommentOriginalURL(string $value)
     {
@@ -314,7 +326,7 @@ class DraftComment extends Model
     /**
      * @param string $value
      *
-     * @return DraftComment
+     * @return DraftResponse
      */
     public function setDepartment(string $value)
     {
@@ -326,7 +338,7 @@ class DraftComment extends Model
     /**
      * @param string $value
      *
-     * @return DraftComment
+     * @return DraftResponse
      */
     public function setIPAddress(string $value)
     {
@@ -338,36 +350,12 @@ class DraftComment extends Model
     /**
      * @param string $value
      *
-     * @return DraftComment
+     * @return DraftResponse
      */
     public function setODSCode(string $value)
     {
         $this->propertyUpdated('ODSCode', $value);
         $this->_data['ODSCode'] = $value;
-        return $this;
-    }
-
-    /**
-     * @param array $value
-     *
-     * @return DraftComment
-     */
-    public function addRating(array $value)
-    {
-        $this->propertyUpdated('Ratings', $value);
-        $this->_data['Ratings'][] = $value;
-        return $this;
-    }
-
-    /**
-     * @param array $value
-     *
-     * @return DraftComment
-     */
-    public function setRatings(array $value)
-    {
-        $this->propertyUpdated('Ratings', $value);
-        $this->_data['Ratings'] = $value;
         return $this;
     }
 
@@ -383,16 +371,15 @@ class DraftComment extends Model
     public function __submittable()
     {
         $submit = json_decode( json_encode( $this, JSON_NUMERIC_CHECK ), TRUE );
-        if ( isset( $submit['Ratings'] ) )
+        if ( isset($submit['RespondingToPublisherID']) )
         {
-            $i = 0;
-            while( $i < count($submit['Ratings'] ) )
-            {
-                if ( isset( $submit['Ratings'][$i]['Question'] ) )
-                    $submit['Ratings'][$i]['Question'] = (string) $submit['Ratings'][$i]['Question'];
-
-                $i++;
-            }
+          $submit['RespondingTo']['PublisherID'] = $submit['RespondingToPublisherID'];
+          unset( $submit['RespondingToPublisherID'] );
+        }
+        if ( isset($submit['RespondingToPublishersCommentRef']) )
+        {
+          $submit['RespondingTo']['PublishersCommentRef'] = (string) $submit['RespondingToPublishersCommentRef'];
+          unset( $submit['RespondingToPublishersCommentRef'] );
         }
         $submit['PublishersCommentRef'] = (string) $submit['PublishersCommentRef'];
         return json_encode( $submit );

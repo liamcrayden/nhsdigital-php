@@ -27,6 +27,7 @@ use GuzzleHttp\Client;
 
 use liamcrayden\NHSDigital\Models\CommentStatus;
 use liamcrayden\NHSDigital\Models\DraftComment;
+use liamcrayden\NHSDigital\Models\DraftResponse;
 
 class NHSModerationAPI extends NHSDigital
 {
@@ -92,6 +93,48 @@ class NHSModerationAPI extends NHSDigital
                 [
                     'headers' => [ 'subscription-key' => $this->subscriptionKey, 'Content-Type' => 'application/json' ],
                     'body' => $comment->__submittable(),
+                ]
+            );
+            $response->getBody();
+            return json_decode( $response->getBody(), TRUE );
+
+        } catch (ClientException $e) {
+
+            echo $e->getMessage();
+            if ( $e->getCode() === 401 || $e->getCode() === 403)
+                throw new AccessDeniedException( $e->getCode() );
+
+            if ( $e->getCode() === 404 )
+                throw new ResourceNotFoundException( $e->getCode() );
+
+            throw new ConnectionFailureException( $e->getMessage() );
+
+        } catch (TransferException $e) {
+
+            throw new ConnectionFailureException( $e->getMessage() );
+
+        }
+
+    }
+
+    /**
+     * Submits a comment for moderation
+     *
+     * @return CommentStatus A CommentStatus object comprising of the response provided
+     * @throws AccessDeniedException If the API request fails due to subscription key credentials
+     * @throws ConnectionFailureException If the API request fails due to connectivity problems
+     * @throws ResourceNotFoundException If the comment ID does not exist
+     */
+    public function submitResponse( DraftResponse $draftResponse )
+    {
+
+        try {
+
+            $response = $this->client->post(
+                '/moderation/comment',
+                [
+                    'headers' => [ 'subscription-key' => $this->subscriptionKey, 'Content-Type' => 'application/json' ],
+                    'body' => $draftResponse->__submittable(),
                 ]
             );
             $response->getBody();

@@ -31,4 +31,8 @@ try {
 
     die( 'Comment not found: ' . $e->getMessage() . PHP_EOL );
 
+} catch ( \Exception $e ) {
+
+    die( 'Exception: ' . $e->getMessage() . PHP_EOL );
+
 }

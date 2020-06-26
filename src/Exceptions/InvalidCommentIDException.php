@@ -21,7 +21,7 @@ class InvalidCommentIDException extends Exception
     public function __construct($commentID, $code = 0, Exception $previous = null)
     {
 
-        $this->message = 'The comment ID "' . $subscriptionKey . '" is not valid. ';
+        $this->message = 'The comment ID "' . $subscriptionKey . '" is not valid.' . PHP_EOL;
         parent::__construct( $this->message, $code, $previous );
 
     }

@@ -131,7 +131,7 @@ class NHSModerationAPI extends NHSDigital
         try {
 
             $response = $this->client->post(
-                '/moderation/comment',
+                '/moderation/response',
                 [
                     'headers' => [ 'subscription-key' => $this->subscriptionKey, 'Content-Type' => 'application/json' ],
                     'body' => $draftResponse->__submittable(),

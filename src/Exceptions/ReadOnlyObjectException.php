@@ -20,7 +20,7 @@ class ReadOnlyObjectException extends Exception
 
     public function __construct($code = 0, Exception $previous = null)
     {
-        $this->message = 'Cannot remotely update a read-only object.';
+        $this->message = 'Cannot remotely update a read-only object.' . PHP_EOL;
         parent::__construct( $this->message, $code, $previous );
     }
 

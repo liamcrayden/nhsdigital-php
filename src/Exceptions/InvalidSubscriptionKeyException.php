@@ -21,7 +21,7 @@ class InvalidSubscriptionKeyException extends Exception
     public function __construct($subscriptionKey, $code = 0, Exception $previous = null)
     {
 
-        $this->message = 'The subscription key "' . $subscriptionKey . '" is not valid. ';
+        $this->message = 'The subscription key "' . $subscriptionKey . '" is not valid.' . PHP_EOL;
         parent::__construct( $this->message, $code, $previous );
 
     }

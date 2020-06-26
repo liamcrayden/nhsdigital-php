@@ -20,7 +20,7 @@ class AccessDeniedException extends Exception
 
     public function __construct($code = 0, Exception $previous = null)
     {
-        $this->message = 'Access to the API was denied using the supplied credentials.';
+        $this->message = 'Access to the API was denied using the supplied credentials.' . PHP_EOL;
         parent::__construct( $this->message, $code, $previous );
     }
 

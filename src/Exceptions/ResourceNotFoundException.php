@@ -20,7 +20,7 @@ class ResourceNotFoundException extends Exception
 
     public function __construct($code = 0, Exception $previous = null)
     {
-        $this->message = 'The requested resource was not found.';
+        $this->message = 'The requested resource was not found.' . PHP_EOL;
         parent::__construct( $this->message, $code, $previous );
     }
 

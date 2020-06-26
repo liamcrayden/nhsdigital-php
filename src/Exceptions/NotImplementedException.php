@@ -20,7 +20,7 @@ class NotImplementedException extends Exception
 
     public function __construct($code = 0, Exception $previous = null)
     {
-        $this->message = 'This function is not yet implemented in this library.';
+        $this->message = 'This function is not yet implemented in this library.' . PHP_EOL;
         parent::__construct( $this->message, $code, $previous );
     }
 

@@ -20,7 +20,7 @@ class ConnectionFailureException extends Exception
 
     public function __construct($message = '', $code = 0, Exception $previous = null)
     {
-        $this->message = 'An error occurred whilst connecting to the API. ' . $message;
+        $this->message = 'An error occurred whilst connecting to the API. ' . $message . PHP_EOL;
         parent::__construct( $this->message, $code, $previous );
     }
 

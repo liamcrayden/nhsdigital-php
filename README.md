@@ -22,5 +22,6 @@ $ composer require liamcrayden/nhsdigital-php
 
 ## History
 ```
+v1.0.0 (2023-08-24) guzzle dependency bump to ^7 and #[\ReturnTypeWillChange] for PHP 8.x moans
 v0.0.1 (2019-10-20) initial commit - NHS Comments API only
 ```

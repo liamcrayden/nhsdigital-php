@@ -5,7 +5,7 @@
     "minimum-stability": "alpha",
     "homepage": "https://github.com/liamcrayden/nhsdigital-php",
     "require": {
-        "guzzlehttp/guzzle": "~6"
+        "guzzlehttp/guzzle": "~7"
     },
     "license": "MIT",
     "authors": [

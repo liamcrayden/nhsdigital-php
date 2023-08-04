@@ -24,6 +24,7 @@ class Collection extends \ArrayObject
      */
     protected $_associated_objects;
 
+    #[\ReturnTypeWillChange]
     public function addAssociatedObject($parent_property, Model $object)
     {
         $this->_associated_objects[$parent_property] = $object;
@@ -34,6 +35,7 @@ class Collection extends \ArrayObject
      *
      * @param $index
      */
+    #[\ReturnTypeWillChange]
     public function removeAt($index)
     {
         if (isset($this[$index])) {
@@ -52,6 +54,7 @@ class Collection extends \ArrayObject
      *
      * @param Model $object
      */
+    #[\ReturnTypeWillChange]
     public function remove(Model $object)
     {
         foreach ($this as $index => $item) {
@@ -64,6 +67,7 @@ class Collection extends \ArrayObject
     /**
      *  Remove all of the values int he collection.
      */
+    #[\ReturnTypeWillChange]
     public function removeAll()
     {
         foreach ($this->_associated_objects as $parent_property => $object) {
@@ -75,11 +79,13 @@ class Collection extends \ArrayObject
         $this->exchangeArray([]);
     }
 
+    #[\ReturnTypeWillChange]
     public function first()
     {
         return $this->offsetExists(0) ? $this->offsetGet(0) : null;
     }
 
+    #[\ReturnTypeWillChange]
     public function last()
     {
         $last = $this->count() - 1;

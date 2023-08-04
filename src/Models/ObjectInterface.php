@@ -21,6 +21,7 @@ interface ObjectInterface
      *
      * @return array
      */
+    #[\ReturnTypeWillChange]
     public static function getProperties();
 
 }

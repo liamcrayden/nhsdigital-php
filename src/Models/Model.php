@@ -366,6 +366,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function __isset($property)
     {
         return isset($this->_data[$property]);
@@ -378,6 +379,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function __get($property)
     {
         $getter = sprintf('get%s', $property);
@@ -387,8 +389,6 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
         }
 
         trigger_error(sprintf("Undefined property %s::$%s.\n", __CLASS__, $property));
-
-
     }
 
     /**
@@ -399,6 +399,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function __set($property, $value)
     {
         $setter = sprintf('set%s', $property);
@@ -412,6 +413,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
 
     }
 
+    #[\ReturnTypeWillChange]
     protected function propertyUpdated($property, $value)
     {
         if (! isset($this->_data[$property]) || $this->_data[$property] !== $value) {
@@ -424,6 +426,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return string
      */
+    #[\ReturnTypeWillChange]
     public function jsonSerialize()
     {
         return $this->toStringArray();
@@ -434,6 +437,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return bool
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return $this->__isset($offset);
@@ -444,6 +448,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->__get($offset);
@@ -455,6 +460,7 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
      *
      * @return mixed
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         return $this->__set($offset, $value);
@@ -463,11 +469,13 @@ abstract class Model implements ObjectInterface, JsonSerializable, ArrayAccess
     /**
      * @param mixed $offset
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->_data[$offset]);
     }
 
+    #[\ReturnTypeWillChange]
     public function __toString()
     {
         return json_encode( $this );

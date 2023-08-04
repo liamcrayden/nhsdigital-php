@@ -159,7 +159,6 @@ class NHSModerationAPI extends NHSDigital
 
     }
 
-
     /**
      * Shorthand method of populating a CommentStatus object
      *
